@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Song</title>
+    <link rel="stylesheet" href="../Quiz%20Song/style.css">
+    <link rel="stylesheet" href="../Quiz%20Song/css/bootstrap.min.css">
+    <style>
+        :root {
+            --back: #000000;
+            --green: #0FFF50;
+            --red:#FF5733;
+            --label-color:#000000;
+        }
+
+        .line{
+            border-right: 2px solid ;
+            height: 400px;
+
+        }
+        .info-user{
+            text-align: center;
+        }
+
+        .btn {
+            width: 132px;
+            background-color: #00C2CB;
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .number-question{
+            color: #00C2CB;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .point{
+            font-size: 25px;
+        }
+        .member{
+            font-size: 25px;
+        }
+        .button-group{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        #btn-start {
+            background-color: #8A9A9D;
+        }
+
+        #audio{
+            width: 300px;
+            height: 54px;
+        }
+
+        .timer-info{
+            display: flex;
+            gap: 15px;
+        }
+
+        #timer{
+            font-size: 25px;
+        }
+
+        #options{
+            margin-top: 20px;
+        }
+
+        #question{
+            margin-top: 20px;
+        }
+
+        [type="radio"]:checked,
+        [type="radio"]:not(:checked) {
+            position: absolute;
+            left: -999px;
+        }
+        [type="radio"]:checked + label,
+        [type="radio"]:not(:checked) + label {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            line-height: 20px;
+            display: inline-block;
+        }
+        [type="radio"]:checked + label:before,
+        [type="radio"]:not(:checked) + label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #ddd;
+            border-radius: 100%;
+            background: #fff;
+        }
+        [type="radio"]:checked + label:after,
+        [type="radio"]:not(:checked) + label:after {
+            content: "";
+            width: 18px;
+            height: 18px;
+            background: var(--label-color);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 100%;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+        [type="radio"]:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+        [type="radio"]:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+    </style>
+</head>
+<body>
+<header>
+
+</header>
+<main id="main">
+    <section class="hero-area">
+        <div class="row justify-content-center">
+            <img src="../Image/🦆%20icon%20_spanish%20music_.png" class="small_icon_music">
+            <div class="">
+                <h1 class="page-title">GUESS THE MUSIC</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="title text-center"><h4>Room Master</h4></div>
+            <div class="row " style="gap: 50px; margin-top: 50px;">
+                <div class="game-info">
+                    <div class="info-user">
+                        <h3>Quoc Dung</h3>
+                        <p>quocdung@gmail.com</p>
+                    </div>
+                    <div class="number-question"><span id="curr-question">00</span><span style="color: #000000">/20 </span></div>
+                    <div id="point" class="point">Point: 0</div>
+                    <div class="member">Members: 12</div>
+                    <div class="button-group">
+                        <button class="btn" id="btn-start">Start</button>
+                        <button class="btn">Leave</button>
+                    </div>
+
+                </div>
+                <span class="line"></span>
+                <div class="question-info">
+                    <div class="col-12">
+                        <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                      <!--      <div class="song-thumbnail">
+                                <img src="img/bg-img/s4.jpg" alt="">
+                            </div>-->
+                            <div class="song-play-area">
+                                <audio id="audio" preload="auto" style="width: 0px;height: 0px;visibility: hidden" controls>
+                                    <source id="srcAudio" src="../Sound/nhac_tre/tung_quen_wren%20evans.mp4">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 20px">
+                    <div id="question"></div>
+                    <div id="options"></div>
+                    <div id="result"></div>
+                    </div>
+                </div>
+                <div class="timer-info">
+                    <img src="../Image/🦆%20icon%20_timer_.png" width="30px" height="35px">
+                    <span id="timer">00:10</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
+<footer id="footer">
+
+</footer>
+</body>
+<script>
+    var questions = [
+        {
+            audio:"../Sound/USUK/The Sun BTS.m4a",
+            question: "Bài hát này của ai",
+            options: ["BTS", "Taylor Swift", "ADELE", "Sơn Tùng"],
+            answer: "BTS"
+        },
+        {
+            audio:"../Sound/USUK/Money.m4a",
+            question: "Bài này tên là gì?",
+            options: ["Peaches", "Heat Waves", "Em của ngày hôm qua","Money"],
+            answer: "Money"
+        },
+        {
+            audio:"../Sound/USUK/peaches.m4a",
+            question: "Bài này tên là gì?",
+            options: ["The sun", "Chắc ai đó sẽ về", "Peaches", "Kiss me more"],
+            answer: "Peaches"
+        },
+        {
+            audio:"../Sound/USUK/Left foot right foot.m4a",
+            question: "Bài hát này của ai",
+            options: ["Charlie Puth", "Dua Lipa", "Justin bieber", ""],
+            answer: "Dua Lipa"
+        },
+        // Add more questions as needed
+    ];
+
+    var point = 0;
+    var member = 0;
+    var currentQuestionIndex = 0;
+    var pointElement = document.getElementById("point")
+    var questionElement = document.getElementById("question");
+    var countdownElement = document.getElementById("timer");
+    var optionsElement = document.getElementById("options");
+    var resultElement = document.getElementById("result");
+    var srcAudio = document.getElementById("srcAudio");
+    var audioPlayer = document.getElementById("audio");
+    var btnStart = document.getElementById("btn-start");
+    var currentQuestionElement = document.getElementById("curr-question");
+
+
+    btnStart.onclick = function () {
+        displayQuestion();
+    }
+    displayFirstQuestion();
+    function displayFirstQuestion() {
+        currentQuestionElement.innerHTML = "01";
+        var currentQuestion = questions[0];
+        questionElement.innerHTML = "Question: " + currentQuestion.question;
+        srcAudio.setAttribute("src", currentQuestion.audio);
+
+        optionsElement.innerHTML = "";
+        for (var i = 0; i < currentQuestion.options.length; i++) {
+            var option = currentQuestion.options[i];
+            var p = document.createElement("p");
+            var label = document.createElement("label");
+            var input = document.createElement("input");
+            input.type = "radio";
+            input.name = "answer";
+            input.id = "answer" + i;
+            input.value = option;
+            label.textContent = option;
+            label.htmlFor = "answer" + i;
+            p.append(input);
+            p.append(label);
+            //p.appendChild(document.createTextNode(option));
+            optionsElement.appendChild(p);
+        }
+    }
+
+    function displayQuestion() {
+        var currentQuestion = questions[currentQuestionIndex];
+        currentQuestionElement.textContent = "";
+        var currentQuestionNum = currentQuestionIndex + 1;
+        currentQuestionElement.textContent = currentQuestionNum < 10? "0" + (currentQuestionNum):currentQuestionNum;
+        questionElement.innerHTML = "Question: " + currentQuestion.question;
+        srcAudio.setAttribute("src", currentQuestion.audio);
+
+        optionsElement.innerHTML = "";
+        for (var i = 0; i < currentQuestion.options.length; i++) {
+            var option = currentQuestion.options[i];
+            var p = document.createElement("p");
+            var label = document.createElement("label");
+            var input = document.createElement("input");
+            input.type = "radio";
+            input.name = "answer";
+            input.id = "answer" + i;
+            input.value = option;
+            label.textContent = option;
+            label.htmlFor = "answer" + i;
+            p.append(input);
+            p.append(label);
+            //p.appendChild(document.createTextNode(option));
+            optionsElement.appendChild(p);
+        }
+        audioPlayer.load();
+        audioPlayer.play();
+
+        startCountdown();
+        setTimeout(showAnswer, 10000); // 10 seconds
+    }
+
+    function showAnswer() {
+        var currentQuestion = questions[currentQuestionIndex];
+        var selectedOption = document.querySelector('input[name="answer"]:checked');
+
+        if (selectedOption && selectedOption.value === currentQuestion.answer) {
+            $( "label:contains('" + currentQuestion.answer + "')" ).css('color', '#0FFF50');
+            $(':root').css('--label-color', '#0FFF50');
+            point += 10;
+            pointElement.textContent = point;
+        } else {
+            $( "label:contains('" + currentQuestion.answer + "')" ).css('color', '#FF5733');
+            $(':root').css('--label-color', '#FF5733');
+        }
+        setTimeout(nextQuestion, 2000); // 2 seconds
+    }
+
+    function nextQuestion() {
+        resultElement.innerHTML = "";
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            countdownElement.innerHTML = "Quiz over!";
+        }
+    }
+
+    function startCountdown() {
+        var duration  = 10;
+        var minutes, seconds;
+
+        function updateCountdown() {
+            minutes = parseInt(duration / 60, 10);
+            seconds = parseInt(duration % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            countdownElement.textContent = minutes + ":" + seconds;
+            duration--;
+
+            if (duration < 0) {
+                countdownElement.textContent = "Time over!";
+            } else {
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        updateCountdown();
+    }
+</script>
+<script src="../Quiz%20Song/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="../Quiz%20Song/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="../Quiz%20Song/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="../Quiz%20Song/js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="../Quiz%20Song/js/active.js"></script>
+</html>
