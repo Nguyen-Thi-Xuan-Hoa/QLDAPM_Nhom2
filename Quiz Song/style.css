@@ -2,12 +2,12 @@ body {
     margin: 0;
     padding: 0;
     align-items: center;
-  justify-content: center;
+    justify-content: center;
 
 }
 
 .page {
-    width: 1920px;
+    width: 1512px;
     height: 1080px;
 }
 
@@ -22,23 +22,19 @@ body {
     background-image: url("Image\anhbia.png");
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 .page_index .content {
     width: 400px;
     margin-left: 50px;
 }
-
 .page_index .name {
     color: #000;
     font-family: Century Gothic;
     font-size: 100px;
     font-style: normal;
     font-weight: 700;
-
 }
-
 .page_index .slogan {
     width: 642px;
     height: 148px;
@@ -54,8 +50,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-.page_index button {
+.page_index .button_index {
     width: 573px;
     padding: 10px;
     background-color: #000;
@@ -69,19 +64,19 @@ body {
     font-style: normal;
     font-weight: 700;
 }
-
 .header_login {
-    display: inline-flex;
+    height: 140px;
+    width: 1512px;
+    display: -webkit-inline-box;
 }
-
-.header_login .logo {
-    background-image: url("Image/anhbiaCV.jpg");
+.page .header_login .logo {
+    background-image: url("Image//avt.jpg");
     width: 176px;
     height: 167px;
     background-repeat: no-repeat;
     background-size: cover;
+    text-align: left;
 }
-
 .header_login .title {
     color: #000;
     font-family: Century Gothic;
@@ -89,16 +84,13 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-   
 }
-.page .container{
+.page .container {
     display: flex;
-
 }
-.page .container .content{
-margin-left: 50px;
+.page .container .content {
+    margin-left: 50px;
 }
-
 .page .container .content p {
     color: #000;
     font-family: Century Gothic;
@@ -109,27 +101,57 @@ margin-left: 50px;
     letter-spacing: 0.72px;
     text-align: center;
 }
-
 .page .container .content .input {
     background: #D9D9D9;
     width: 500px;
     height: 50px;
     margin-top: 40px;
 }
-.page .container .content .input input{
+
+.page .container .content .input input {
     border: none;
     outline: none;
-    background-color:#D9D9D9 ;
+    background-color: #D9D9D9;
     width: 350px;
     height: 50px;
     font-size: 25px;
 }
-.page .container .content .input label{
+
+.page .container .content .input label {
     color: #000;
-text-align: center;
-font-family: Roboto;
-font-size: 25px;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin-left: 10px;
+}
+.page .container .content form .button_login_signup{
+    text-align: center;
+}
+
+.page .container .content form .button_login_signup .button_login {
+    background: #00C2CB;
+    border: 1px solid #00C2CB;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px 4px 0px 0px;
+    width: 400px;
+    height: 50px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 35px;
+    text-align: center;
+    color: #FFFFFF;
+    border: 1px solid #00C2CB;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.page .header_playnow a{
+font-family: 'Roboto';
 font-style: normal;
-font-weight: 700;
-line-height: 140%; /* 50.4px */
+color: #000000;
+text-decoration: none;
+
+
 }
