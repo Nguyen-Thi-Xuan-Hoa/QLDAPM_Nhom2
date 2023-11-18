@@ -7,35 +7,42 @@ body {
 }
 
 .page {
-    margin: 0;
-    width: 1512px;
-    height: 1080px;
+    margin: 0; 
 }
 
 .page_index {
-    display: flex;
-}
-.page_index .background {
-    height: 1080px;
-    width: 900px;
-    background-image: url("anhbia.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* display: flex; */
 }
 
 .page_index .content {
     width: 550px;
     margin-left: 60px;
+    position: absolute;
+    z-index: 1;
 }
+
+
+.page_index .background {
+    margin-left: 300px;
+    height: 700px;
+    width: 1200px;
+    background-image: url("../Image/anhbia.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: 0;
+}
+
 .page_index .name {
     width: 400px;
     color: #000;
     font-family: Century Gothic;
-    font-size: 90px;
+    font-size: 100px;
     font-style: normal;
     font-weight: 700;
     margin: 50px 0 0 0;
 }
+
 .page_index .slogan {
     width: 600px;
     height: 100px;
@@ -51,33 +58,48 @@ body {
     -webkit-text-fill-color: transparent;
     margin: 30px 0;
 }
-.page_index .button_index {
-    width: 573px;
-    padding: 10px;
+
+.page_index .button_index, .page_index .content a {
+    padding: 10px 120px;
     background-color: #000;
-    gap: 10px;
     color: white;
     font-size: 40px;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Roboto;
-    font-size: 64px;
+    font-size: 50px;
     font-style: normal;
     font-weight: 700;
+    text-decoration: none;
 }
+
 .header_login {
     height: 140px;
     width: 1512px;
-    display: -webkit-inline-box;
+    display: flex;
+    position: relative;
 }
+
 .page .header_login .logo {
-    background-image: url("Image//avt.jpg");
-    width: 176px;
-    height: 167px;
+    background-image: url("../Image/logo.png");
+    width: 112;
+    height: 108px;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: left;
+    margin: 30px 30px;
+    position: absolute;
+    
 }
+.page .container .image{
+    background-image:url("../Image/spanishMusic.png") ;
+    width: 460px;
+    height: 470px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 300px;
+}
+
 .header_login .title {
     color: #000;
     font-family: Century Gothic;
@@ -85,13 +107,18 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: auto;
 }
+
 .page .container {
     display: flex;
+    justify-content: center;
 }
+
 .page .container .content {
     margin-left: 50px;
 }
+
 .page .container .content p {
     color: #000;
     font-family: Century Gothic;
@@ -102,11 +129,13 @@ body {
     letter-spacing: 0.72px;
     text-align: center;
 }
+
 .page .container .content .input {
     background: #D9D9D9;
     width: 500px;
     height: 50px;
     margin-top: 40px;
+   
 }
 
 .page .container .content .input input {
@@ -128,8 +157,10 @@ body {
     line-height: 140%;
     margin-left: 10px;
 }
-.page .container .content form .button_login_signup{
+
+.page .container .content form .button_login_signup {
     text-align: center;
+    
 }
 
 .page .container .content form .button_login_signup .button_login {
@@ -148,11 +179,41 @@ body {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
-.page .header_playnow a{
+.page_playnow .header_playnow{
+    display: flex;
+}
+.page_playnow .header_playnow .link_login_singup a {
 font-family: 'Roboto';
 font-style: normal;
-color: #000000;
+font-weight: 500;
+font-size: 30px;
+line-height: 140%;
 text-decoration: none;
+color: #000;
 
-
+}
+.page_playnow .container .content{
+    margin: auto;
+    flex: 1;
+}
+.page_playnow .header_playnow .link_login_singup{
+    position: absolute;
+    top:50% ;
+    right: 0;
+    transform: translateY(-50%);
+    margin-right: 30px;
+}
+.page_playnow .container .image_playnow{
+    width: 460px;
+    height: 470px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+} 
+.page_playnow .container .image_playnow img{
+    object-fit: cover;
+}
+.page_playnow .container .content .input_playnow{
+    margin: auto;
 }
