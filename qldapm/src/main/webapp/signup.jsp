@@ -9,6 +9,9 @@
 </head>
 
 <body>
+<%
+    String errorAcc= (String) request.getAttribute("errorAcc");
+%>
     <div class="page">
         <header class="header_login">
             <div class="logo"></div>
@@ -17,14 +20,20 @@
         <div class="container">
             <div class="content">
                 <p>Signup</p>
-                <form>
+                <form action="/Signup" method="post">
+                    <% if (errorAcc != null) { %>
+                    <div class="form-group">
+                        <label  style="color: #CC3636"><%=errorAcc%>
+                        </label>
+                    </div>
+                    <%}%>
                     <div class="input input1">
-                        <label for="nameuser">Name:</label>
-                        <input type="nameuser" id="nameuser" name="nameuser" required>
+                        <label for="name">Name:</label>
+                        <input type="name" id="name" name="name" value="<%=request.getParameter("name")!=null?request.getParameter("name"):""%>" required>
                     </div>
                     <div class="input input1">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" value="<%=request.getParameter("email")!=null?request.getParameter("email"):""%>" required>
                     </div>
                     <div class=" input input2">
                         <label for="password">Password:</label>

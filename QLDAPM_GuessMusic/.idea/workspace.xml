@@ -5,7 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8230f74-cee3-4f0e-bf7c-18d14ff1443f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Quiz Song/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Quiz Song/Login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../qldapm/src/main/java/filter/Utf8.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/java/controller/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/java/controller/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/java/controller/Playnow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/java/controller/Signup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/java/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/webapp/playnow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/webapp/playnow.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/webapp/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/src/main/webapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/src/main/webapp/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/classes/controller/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/classes/controller/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/classes/controller/Playnow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/classes/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/classes/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm.war" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/WEB-INF/classes/controller/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm/WEB-INF/classes/controller/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/WEB-INF/classes/controller/Playnow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/WEB-INF/classes/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm/WEB-INF/classes/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/playnow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm/playnow.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../qldapm/target/qldapm/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../qldapm/target/qldapm/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,19 +55,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/DW_currency-exchange-rate",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DW_currency-exchange-rate&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
@@ -107,6 +125,7 @@
       <workItem from="1701087574681" duration="147000" />
       <workItem from="1701087755335" duration="865000" />
       <workItem from="1701179030105" duration="703000" />
+      <workItem from="1702215854662" duration="9000" />
     </task>
     <servers />
   </component>

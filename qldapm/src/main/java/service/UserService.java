@@ -54,11 +54,30 @@ public class UserService {
                     .mapToBean(User.class).collect(Collectors.toList());
         });
     }
-//    public static void main(String[] args) {
-//        System.out.println(getInstance().login());
-////        System.out.println(getInstance().getListUser());
-//        System.out.println(getInstance().login("ledang200234@gmail.com","123456");
-//    }
+    public boolean checkAccountExist(String email) {
+        List<User> list = JDBIConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT* FROM user")
+                    .mapToBean(User.class).collect(Collectors.toList());
+        });
+        for (User u : list) {
+            if (email.equals(u.getEmail())) return true;
+        }
+        return false;
+    }
+    public void addUser(String name, String email, String pass) {
+        List<User> users = getListUser();
+        int count = users.size();
+        JDBIConnector.get().withHandle(handle -> {
+            return handle.createUpdate("INSERT INTO `user` VALUES ("+(count+1)+", '"+name+"', '"+email+"', '"+pass+"');").execute();
+
+        });
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getInstance().checkAccountExist("xuanhoa@gmail.com"));
+//       getInstance().addUser("ABC", "abc@gmail.com","abc123");
+    }
 
 
 }

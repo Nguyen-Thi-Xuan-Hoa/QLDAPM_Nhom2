@@ -11,6 +11,8 @@
 </head>
 
 <body>
+<% User user= (User) session.getAttribute("auth");
+%>
     <div class="page page_playnow">
         <header class=" header_login header_playnow">
             <div class="logo"></div>
@@ -19,14 +21,21 @@
         </header>
         <div class="container">
             <div class="content">
-<%--                <% List<User> user= (List<User>) session.getAttribute("listuser");--%>
-<%--                for (User u:user){--%>
-<%--                %>--%>
-                <form>
-                    <div class="input input_playnow">
-                        <label for="email">Name:</label>
-                        <input type="email" id="email" name="email"  value="" required>
-                    </div>
+
+                <form action="" method="">
+                    <%if(user==null){%>
+                        <div class="input input_playnow">
+                        <label>Name:</label>
+                        <input type="email"  name="" value="" required>
+                              </div>
+                            <%}
+                            else {%>
+                         <div class="input input_playnow">
+                        <label >Name:</label>
+                        <input type=""  name=""  value="<%=user.getName()%>" required>
+                              </div>
+                           <% }
+                            %>
                     <div class="button_login_signup">
                         <button class="input button_login" type="submit">Multiplayer(2-20)</button></br>
                         <button class="input button_login" type="submit">Join</button>

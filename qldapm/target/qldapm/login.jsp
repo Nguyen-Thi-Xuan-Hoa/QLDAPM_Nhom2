@@ -35,7 +35,7 @@
                     </div>
                     <div class="button_login_signup">
                         <button class="input button_login" type="submit">Login</button></br>
-                        <button class="input button_login" type="submit">Signup</button>
+                        <button class="input button_login" type="" ><a href="signup.jsp">Signup</a></button>
                     </div>
                 </form>
             </div>
