@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Song</title>
+    <link rel="stylesheet" href="dungstyle.css">
+    <link rel="stylesheet" href="../Quiz%20Song/css/bootstrap.min.css">
+    <style>
+        :root {
+            --back: #000000;
+            --green: #0FFF50;
+            --red:#FF5733;
+            --label-color:#000000;
+        }
+
+        .line{
+            border-right: 2px solid ;
+            height: 400px;
+
+        }
+        .info-user{
+            text-align: center;
+        }
+
+        .btn {
+            width: 132px;
+            background-color: #00C2CB;
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .number-question{
+            color: #00C2CB;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .point{
+            font-size: 25px;
+        }
+        .member{
+            font-size: 25px;
+        }
+        .button-group{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        #btn-start {
+            background-color: #8A9A9D;
+        }
+
+        #audio{
+            width: 300px;
+            height: 54px;
+        }
+
+        .timer-info{
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #timer{
+            font-size: 25px;
+        }
+
+        #question{
+            font-size: 25px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        [type="radio"]:checked,
+        [type="radio"]:not(:checked) {
+            position: absolute;
+            left: -999px;
+        }
+        [type="radio"]:checked + label,
+        [type="radio"]:not(:checked) + label {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            line-height: 20px;
+            display: inline-block;
+        }
+        [type="radio"]:checked + label:before,
+        [type="radio"]:not(:checked) + label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #ddd;
+            border-radius: 100%;
+            background: #fff;
+        }
+        [type="radio"]:checked + label:after,
+        [type="radio"]:not(:checked) + label:after {
+            content: "";
+            width: 18px;
+            height: 18px;
+            background: var(--label-color);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 100%;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+        [type="radio"]:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+        [type="radio"]:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .options{
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 10px;
+
+        }
+
+        .answer{
+            width: 300px;
+            height: 80px;
+            background-color: #000000;
+            border-radius: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFF;
+            font-size: 20px;
+        }
+
+        .answer1{
+            width: 100%;
+            grid-area: 1 / 1 / 2 / 3;
+            display: flex;
+            justify-content: center;
+        }
+
+        .answer2{
+            grid-area: 2 / 1 / 3 / 2;;
+        }
+
+        .answer3{
+            grid-area: 2 / 2 / 3 / 3;
+        }
+
+        .answer4{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            grid-area: 3 / 1 / 4 / 3;
+        }
+
+        .active-answer{
+            border: solid 5px #00C2CB;
+        }
+
+        .chooser-img{
+            margin-top: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .circle-img-chooser{
+            position: relative;
+            overflow: hidden;
+            border-style: solid;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #0b0b0b;
+        }
+
+        .chooser-imgs{
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            right: -11.5rem;
+            top: calc(-1 * 3.5rem);
+        }
+
+        .chooser-imgs-posivite{
+           position: relative;
+        }
+
+        .award{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .row-btn{
+            display: flex;
+            gap: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+
+</header>
+<main id="main">
+    <section class="hero-area">
+        <div class="row justify-content-center">
+            <img src="../Image/🦆%20icon%20_spanish%20music_.png" class="small_icon_music">
+            <div class="">
+                <h1 class="page-title">GUESS THE MUSIC</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="title text-center"><h4>Game Play</h4></div>
+            <div class="row " style="gap: 50px; margin-top: 50px;">
+                <div class="game-info">
+                    <div class="info-user">
+                        <h3>Quoc Dung</h3>
+<!--                        <p>quocdung@gmail.com</p>-->
+                    </div>
+                    <div class="number-question"><span id="curr-question">00</span><span style="color: #000000">/20 </span></div>
+                    <div id="point" class="point">Điểm Số: 0</div>
+                    <div class="member">Members: 12</div>
+
+                </div>
+                <span class="line"></span>
+                <div class="question-info">
+                    <div class="col-12">
+                        <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                            <!--      <div class="song-thumbnail">
+                                      <img src="img/bg-img/s4.jpg" alt="">
+                                  </div>-->
+                            <div class="song-play-area">
+                                <audio id="audio" preload="auto" style="width: 0px;height: 0px;visibility: hidden" controls>
+                                    <source id="srcAudio" src="../Sound/nhac_tre/tung_quen_wren%20evans.mp4">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 20px">
+                        <div id="question"></div>
+                        <div id="options" class="options">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="timer-info">
+                    <img src="../Image/🦆%20icon%20_timer_.png" width="30px" height="35px">
+                    <span id="timer">00:10</span>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+</main>
+<footer id="footer">
+
+</footer>
+</body>
+<script src="../Quiz%20Song/js/jquery/jquery-2.2.4.min.js"></script>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const roomId = urlParams.get('r')
+    const username = window.sessionStorage.getItem("username");
+    const avatar = window.sessionStorage.getItem("avatar");
+    var webSocket = new WebSocket("ws://" + "localhost:8080"  + "/room/" + roomId + "?" + "username=" + username + "&avatar=" + avatar);
+
+    // Handle WebSocket events
+    webSocket.onopen = function(event) {
+        console.log("WebSocket connection opened");
+    };
+
+    webSocket.onmessage = function(event) {
+        var message = event.data;
+        console.log("WebSocket message received: " + message);
+
+        if(message.includes("choose")){
+           showUserAnswer(message);
+        }
+    };
+
+    webSocket.onclose = function(event) {
+        console.log("WebSocket connection closed");
+    };
+
+    // Send WebSocket messages
+    function sendMessage(message) {
+        webSocket.send(message);
+    }
+
+    var questions = [
+    ];
+
+    var point = 0;
+    var member = 0;
+    var timeLeft = 10;
+    var currentQuestionIndex = 0;
+    var pointElement = document.getElementById("point")
+    var questionElement = document.getElementById("question");
+    var countdownElement = document.getElementById("timer");
+    var optionsElement = document.getElementById("options");
+    var srcAudio = document.getElementById("srcAudio");
+    var audioPlayer = document.getElementById("audio");
+    var currentQuestionElement = document.getElementById("curr-question");
+
+    function displayQuestion() {
+        var currentQuestion = questions[currentQuestionIndex];
+        currentQuestionElement.textContent = "";
+        var currentQuestionNum = currentQuestionIndex + 1;
+        currentQuestionElement.textContent = currentQuestionNum < 10? "0" + (currentQuestionNum):currentQuestionNum;
+        questionElement.innerHTML = "Question: " + currentQuestion.content;
+        srcAudio.setAttribute("src", currentQuestion.audio);
+
+        optionsElement.innerHTML = "";
+        //p.appendChild(document.createTextNode(option));
+            $("#options").append("<div class=\"answer1\">\n" +
+                "                <div class =\"answer\" onClick=\"clickAnswer(this)\">\n" +
+                "<input type='hidden' value='1'>\n" +
+                "                    <div class=\"chooser-imgs-posivite\">\n" +
+                "                        <div class=\"chooser-imgs\">\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                    <span>" + currentQuestion.answers[0] + "</span></div>\n" +
+                "            </div>\n" +
+                "            <div class=\"answer answer2\" onClick=\"clickAnswer(this)\">" +
+                "<input type='hidden' value='2'>\n" +
+                "<div class=\"chooser-imgs-posivite\">\n" +
+                "                        <div class=\"chooser-imgs\">\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "<span>" + currentQuestion.answers[1] + "</span></div>\n" +
+                "            <div class=\"answer answer3\" onClick=\"clickAnswer(this)\">\n" +
+                "<input type='hidden' value='3'>\n" +
+                "<div class=\"chooser-imgs-posivite\">\n" +
+                "                        <div class=\"chooser-imgs\">\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "<span>" + currentQuestion.answers[2] + "</span></div>\n" +
+                "            <div class=\"answer4\">\n" +
+                "                <div class=\"answer\" onClick=\"clickAnswer(this)\">" +
+                "<input type='hidden' value='4'>\n" +
+                "<div class=\"chooser-imgs-posivite\">\n" +
+                "                        <div class=\"chooser-imgs\">\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "<span>" + currentQuestion.answers[3] + "</span></div>\n" +
+                "            </div>");
+        audioPlayer.load();
+        audioPlayer.play();
+
+        startCountdown();
+        setTimeout(showAnswer, timeLeft*1000); // 10 seconds
+    }
+
+    function showAnswer() {
+        audioPlayer.pause();
+        var currentQuestion = questions[currentQuestionIndex];
+        if ($(".active-answer span").length !== 0 && $(".active-answer").find("span").text() === currentQuestion.rightAnswer) {
+            $(".answer:has(span:contains(" + currentQuestion.rightAnswer + "))").css("background-color", "#3FDBA3");
+            $( "label:contains('" + currentQuestion.rightAnswer + "')" ).css('color', '#0FFF50');
+            //$(':root').css('--label-color', '#0FFF50');
+            //'#3FDBA3'
+            point += 10;
+            pointElement.textContent = "Điểm Số: " + point;
+        } else {
+            $(".answer:has(span:contains(" + currentQuestion.rightAnswer + "))").css("background-color", "#F93052");
+            //$( "label:contains('" + currentQuestion.answer + "')" ).css('color', '#F93052');
+            //$(':root').css('--label-color', '#F93052');
+        }
+        if((currentQuestionIndex+1) === questions.length){
+            sendMessage("point" + point);
+        }
+        setTimeout(nextQuestion, 2000); // 2 seconds
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            timeLeft = 10;
+            displayQuestion();
+        } else {
+            showResult();
+            countdownElement.innerHTML = "Quiz over!";
+        }
+    }
+
+    function startCountdown() {
+        var duration  = timeLeft;
+        var minutes, seconds;
+
+        function updateCountdown() {
+            minutes = parseInt(duration / 60, 10);
+            seconds = parseInt(duration % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            countdownElement.textContent = minutes + ":" + seconds;
+            duration--;
+
+            if (duration < 0) {
+                countdownElement.textContent = "Time over!";
+            } else {
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        updateCountdown();
+    }
+
+    function showResult(){
+        $(".question-info").empty();
+        let data = {
+            roomId: roomId
+        };
+        getAllPoint(data);
+    }
+
+    $(document).ready(function() {
+        $(".info-user h3").text(username);
+        let data = {
+            roomId: roomId
+        };
+        getGameInfo(data);
+    });
+
+    function getGameInfo(data) {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8080/gameInfo',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: "application/json",
+            success: function(data) {
+                currentQuestionIndex = data.currentQuestion;
+                duration = data.timeLeft <=0?0:data.timeLeft/1000;
+                $(".member").text("member: " + data.members);
+                questions = data.questions;
+                console.log(data);
+                displayQuestion();
+            },
+            error: function (error){
+                console.log(error);
+            }
+        })
+    }
+
+    function getAllPoint(data) {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8080/getAllPoint',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: "application/json",
+            success: function(data) {
+               console.log(data);
+               let position;
+                for (let i = 0; i < data.length; i++) {
+                    let j  = i + 1;
+                    let name = data[i].username;
+                    let point = data[i].point;
+                    if(name === username){
+                        position = j;
+                        $(".question-info").append( "<div style='font-size: 25px;color: #00C2CB'><p>"+ j + " " + name + ": " + point + " Điểm</p></div>" );
+                    } else {
+                        $(".question-info").append( "<div style='font-size: 25px'><p>"+ j + " " + name + ": " + point + " Điểm</p></div>" );
+                    }
+                }
+                $(".timer-info").css("display","inline")
+                $(".timer-info").empty();
+                $(".timer-info").append("<div class='award'>" +
+                    "            <div><h4>Vị trí thứ " +  position  + "</h4></div>\n" +
+                    "            <div><img src=\"../Image/🦆%20icon%20_moon_.png\" width=\"200\" height=\"175\" alt=\"\"></div>\n" +
+                    "            <div class=\"row-btn\"><button class=\"btn\" onclick='continueGame()'>Tiếp tục</button><button class=\"btn\" onclick='quitGame()'>̀Thoát</button></div>\n"
+                    + "</div>"
+                );
+
+            },
+            error: function (error){
+                console.log(error);
+            }
+        })
+    }
+
+    function showUserAnswer(data){
+        let answer = data.substring(7);
+        let linkAvatar = data.substring(6,7);
+
+        $(".answer" + answer + " .chooser-imgs").append(
+            "<div class=\"circle-img-chooser\">" +
+            "<img src=\"../Image/avatar/" + linkAvatar + ".png\"\n" +
+            "class=\"chooser-img\"></div>\n"
+        );
+    }
+
+    function clickAnswer(that) {
+        $(".options .answer").removeClass("active-answer")
+        that.classList.add("active-answer");
+        let answer = $(that).find("input").val();
+        $(".options .answer").prop("onclick", null).off("click");
+        sendMessage("choose" + avatar + answer);
+    }
+
+    function continueGame(){
+        window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Configure_Game.html?r=' + data;
+    }
+
+    function quitGame(){
+        window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Home.html?';
+    }
+
+</script>
+<!-- Popper js -->
+<script src="../Quiz%20Song/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="../Quiz%20Song/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="../Quiz%20Song/js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="../Quiz%20Song/js/active.js"></script>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="../Quiz%20Song/style.css">
+    <link rel="stylesheet" href="dungstyle.css">
     <link rel="stylesheet" href="../Quiz%20Song/css/bootstrap.min.css">
     <style>
 
@@ -38,14 +38,14 @@
                         <div class="login-form">
                             <form action="#" method="post">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter E-mail">
+                                    <label for="email-input">Email</label>
+                                    <input type="email" class="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Enter E-mail">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
-                                <button type="submit" class="btn oneMusic-btn mt-60">Login</button>
+                                <button id="btn-login" class="btn oneMusic-btn mt-60">Login</button>
                             </form>
                         </div>
                         <button class="btn oneMusic-btn mt-60" style="margin-top: 20px">Sign up</button>
@@ -61,6 +61,37 @@
 </footer>
 </body>
 <script src="../Quiz%20Song/js/jquery/jquery-2.2.4.min.js"></script>
+<script>
+
+    //let data = $("#form").serialize();
+
+    $("#btn-login").click(function (e) {
+        e.preventDefault();
+        let data = "{username=qdung112}";
+        login(data);
+    });
+
+    function login(data){
+        $.ajax({
+            url: 'http://localhost:8080/login',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            complete: function () {
+                window.localStorage.setItem("username","qdung112");
+                window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Home.html';
+            },
+            success: function (result) {
+                window.localStorage.setItem("username","qdung112");
+                window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Home.html';
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>
 <!-- Popper js -->
 <script src="../Quiz%20Song/js/bootstrap/popper.min.js"></script>
 <!-- Bootstrap js -->

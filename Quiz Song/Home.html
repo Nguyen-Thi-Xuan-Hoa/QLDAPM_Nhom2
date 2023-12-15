@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Quiz Song</title>
-  <link rel="stylesheet" href="../Quiz%20Song/style.css">
+  <link rel="stylesheet" href="dungstyle.css">
   <link rel="stylesheet" href="../Quiz%20Song/css/bootstrap.min.css">
   <style>
 
@@ -15,6 +15,45 @@
       background-color: #00C2CB;
       color: #FFFFFF;
     }
+
+    .avatar-picker{
+      height: 152px;
+      width: 152px;
+      position: relative;
+      background-color: #0b0b0b;
+      border-width: 0.625rem;
+      border-style: solid;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    .change-avatar-btn{
+      height: 35px;
+      width: 35px;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      outline: none !important;
+      background: #FFFFFF !important;
+      bottom: min(15px, 1.4648vh);
+      right: min(15px, 1.4648vh);
+    }
+
+    .login-content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -34,17 +73,25 @@
       <div class="row justify-content-center" style="gap: 100px; margin-top: 120px;">
         <div class="col-12 col-lg-4">
           <div class="login-content">
+              <div class="avatar-picker">
+                <img    id="avatar"
+                        style="position: absolute;
+                                height: 100%;
+                                width: 100%;
+                                color: transparent;"
+                        src="../Image/avatar/1.png" alt="">
+                <button id="change-avatar" onclick="changeAvatar()" class="change-avatar-btn"><svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#545759" d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"/></svg><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"/></svg></button>
+            </div>
             <!-- Login Form -->
             <div class="login-form">
               <form action="#" method="post">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+                  <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Name">
                 </div>
-                <button class="btn oneMusic-btn mt-60" >Multiplayer(2-20)</button>
+                <button id="btn-create" class="btn oneMusic-btn mt-60" >Multiplayer(2-20)</button>
               </form>
             </div>
-            <button type="submit" class="btn oneMusic-btn mt-60" style="margin-top: 20px">Join</button>
+            <button id="btn-join" class="btn oneMusic-btn mt-60">Join</button>
           </div>
         </div>
         <img src="../Image/🦆%20icon%20_spanish%20music_large.png" class="large_icon_music">
@@ -57,6 +104,45 @@
 </footer>
 </body>
 <script src="../Quiz%20Song/js/jquery/jquery-2.2.4.min.js"></script>
+<script>
+
+  let avatarNum = 1;
+
+ $("#btn-create").click("click",function (e) {
+   e.preventDefault();
+   window.sessionStorage.setItem("username",$("#username").val());
+   window.sessionStorage.setItem("avatar",avatarNum);
+   window.sessionStorage.setItem("owner","true");
+   createRoom();
+ })
+
+ $("#btn-join").click("click",function (e){
+   window.sessionStorage.setItem("username",$("#username").val());
+   window.sessionStorage.setItem("avatar",avatarNum);
+   window.sessionStorage.setItem("owner","false");
+   window.location.href = "/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Join_Room.html"
+ })
+
+ function createRoom() {
+   $.ajax({
+     type: "POST",
+     url: 'http://localhost:8080/room/create',
+     success: function(data) {
+       console.log(data);
+       window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Configure_Game.html?r=' + data;
+     },
+     error: function (error){
+       console.log(error);
+     }
+   })
+ }
+
+ function changeAvatar(){
+   avatarNum = Math.floor(Math.random() * 7) + 1;
+   $("#avatar").attr("src","../Image/avatar/" + avatarNum + ".png");
+ }
+
+</script>
 <!-- Popper js -->
 <script src="../Quiz%20Song/js/bootstrap/popper.min.js"></script>
 <!-- Bootstrap js -->

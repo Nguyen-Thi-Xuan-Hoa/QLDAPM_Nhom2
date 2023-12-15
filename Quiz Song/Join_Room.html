@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tham gia phòng</title>
-    <link rel="stylesheet" href="../Quiz%20Song/style.css">
+    <link rel="stylesheet" href="dungstyle.css">
     <link rel="stylesheet" href="../Quiz%20Song/css/bootstrap.min.css">
     <style>
         .btn {
@@ -35,14 +35,11 @@
     <section>
         <div class="row">
             <div class="content">
-                <form action="">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Enter roomId</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Room-Id">
+                        <label for="input-roomId">Enter roomId</label>
+                        <input type="text" name="roomId" class="form-control" id="input-roomId" aria-describedby="emailHelp" placeholder="Room-Id">
                     </div>
-                    <button class="btn" type="submit">Join</button>
-                </form>
-
+                <button class="btn" id="join">Join</button>
             </div>
             <img src="../Image/back_ground.png" class="back_ground_image">
         </div>
@@ -52,7 +49,32 @@
 
 </footer>
 </body>
+
 <script src="../Quiz%20Song/js/jquery/jquery-2.2.4.min.js"></script>
+<script>
+    let data = $("#form").serialize();
+
+    $("#join").click("click",function (){
+        //joinGame($("#input-roomId").val());
+        window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Configure_Game.html?r=' + $("#input-roomId").val();
+    })
+
+    function joinGame(data) {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8080/join?roomId=' + data,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function(data) {
+                window.location.href = '/quiz-song/QLDAPM_Nhom2/Quiz%20Song/Configure_Game.html?r=' + $("#input-roomId").val();
+            },
+            error: function (error){
+                console.log(error);
+                alert("Room k ton tai")
+            }
+        })
+    }
+</script>
 <!-- Popper js -->
 <script src="../Quiz%20Song/js/bootstrap/popper.min.js"></script>
 <!-- Bootstrap js -->
